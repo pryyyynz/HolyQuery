@@ -25,12 +25,14 @@ st.set_page_config(
 # Apply custom styling
 st.markdown("""
 <style>
+    /* Light mode styles (default) */
     .main {
         background-color: #f5f5f5;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 2px;
         background-color: white;
+        border-bottom: 1px solid #ddd;
     }
     .stTabs [data-baseweb="tab"] {
         height: 60px;
@@ -40,10 +42,34 @@ st.markdown("""
         gap: 1px;
         padding: 10px 16px;
         font-size: 16px;
+        border: 1px solid #ddd;
+        color: #333;
     }
     .stTabs [aria-selected="true"] {
         background-color: #4169E1;
         color: white;
+        border-bottom-color: transparent;
+    }
+    
+    /* Dark mode adjustments */
+    @media (prefers-color-scheme: dark) {
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: #1e1e1e;
+            border-bottom: 1px solid #444;
+        }
+        .stTabs [data-baseweb="tab"] {
+            background-color: #2d2d2d;
+            color: #ddd;
+            border: 1px solid #444;
+        }
+        .stTabs [data-baseweb="tab"]:hover {
+            background-color: #3d3d3d;
+        }
+        .stTabs [aria-selected="true"] {
+            background-color: #5179F1;
+            color: white;
+            border-bottom-color: transparent;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
