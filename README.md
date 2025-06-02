@@ -5,12 +5,14 @@
 
 HolyQuery is an interactive RAG (Retrieval-Augmented Generation) system that allows users to query the Bible and Quran for insights, interpretations, and knowledge. Powered by Anthropic's Claude AI model, it provides contextually relevant and thoughtful answers based on these sacred texts.
 
+## Live Application
+
+Check out the live application: [HolyQuery](https://holyquery.streamlit.app/)
+
 ## ✨ Features
 
 - **Dual Text Support**: Search and query both the Bible and Quran from a single interface
 - **Contextual Answers**: Get responses that include relevant passages and context from the sacred texts
-- **User-friendly Interface**: Simple, intuitive Streamlit web interface
-- **Scholarly Approach**: Responses follow scholarly guidelines for interpreting religious texts
 - **Vector-based Retrieval**: Utilizes vector embeddings for semantic search capabilities
 
 ## 📋 Requirements
@@ -68,40 +70,3 @@ HolyQuery/
     └── quran/               # Quran RAG implementation
 ```
 
-## ⚙️ Configuration
-
-### Environment Variables
-
-Create a `.env` file in the project root:
-
-```
-CLAUDE_API_KEY=your_anthropic_api_key_here
-```
-
-### Streamlit Cloud Deployment
-
-For Streamlit Cloud deployment, add the `CLAUDE_API_KEY` to your secrets in the Streamlit Cloud dashboard.
-
-## 🎨 Customization
-
-- **Model Parameters**: You can adjust temperature, max_tokens, and other parameters in the RAG classes
-- **UI Styling**: Modify the CSS in `app.py` to customize the appearance
-- **RAG Settings**: Adjust retrieval settings (k value, etc.) in the RAG classes
-
-## 📝 Notes for Dark Mode Users
-
-The application supports both light and dark mode. If you encounter any display issues in dark mode, try switching to light mode or refresh the page.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Anthropic for the Claude AI model
-- The Streamlit team for their excellent framework
-- All contributors and supporters of the project
