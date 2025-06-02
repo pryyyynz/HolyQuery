@@ -23,9 +23,16 @@ class QuranRAG:
         self.pdf_path = os.path.join(project_root, "scripts", "Quran.pdf")
         self.retriever = None
 
-        # Initialize the Anthropic client
-        self.client = anthropic.Anthropic(
-            api_key=os.environ.get("CLAUDE_API_KEY"))
+        # Get API key from environment
+        self.api_key = os.environ.get("CLAUDE_API_KEY")
+        
+        # Check if API key is available
+        if not self.api_key:
+            print("WARNING: CLAUDE_API_KEY not found in environment variables. Please check your .env file.")
+            self.client = None
+        else:
+            # Initialize the Anthropic client
+            self.client = anthropic.Anthropic(api_key=self.api_key)
 
         # Initialize the RAG system
         self._initialize()
@@ -83,12 +90,18 @@ class QuranRAG:
         
         Answer (structure your response clearly with appropriate headings when needed):"""
 
+        # Check if client is available
+        if not self.client:
+            return "Error: Anthropic API key not set. Please add your CLAUDE_API_KEY to the .env file."
+            
         # Query Claude
-        message = self.client.messages.create(
-            model="claude-3-opus-20240229",
-            max_tokens=1000,
-            temperature=0.5,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        return message.content[0].text
+        try:
+            message = self.client.messages.create(
+                model="claude-3-opus-20240229",
+                max_tokens=1000,
+                temperature=0.5,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return message.content[0].text
+        except Exception as e:
+            return f"Error querying Anthropic API: {str(e)}"
